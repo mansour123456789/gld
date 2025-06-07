@@ -31,7 +31,7 @@ export class Freelancer {
   @Field(() => [LienProfessionnel], { nullable: true })
   liens?: LienProfessionnel[];
 
-  @ManyToMany(() => Mission, mission => mission.freelancers)
+  @ManyToMany(() => Mission, mission => mission.freelancer)
   @JoinTable()
   @Field(() => [Mission], { nullable: true })
   missions?: Mission[];

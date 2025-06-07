@@ -312,4 +312,15 @@ mutation {
 
 
 
-pm run start:dev
+npm run start:dev
+
+nest generate resource freelancer
+GraphQL (schema first)
+
+
+
+
+
+nest g module mission
+nest g resolver mission
+nest g service mission
