@@ -1,0 +1,113 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Competence {
+  freelancer: Freelancer!
+  id: Int!
+  niveau: String!
+  nom: String!
+}
+
+input CreateCompetenceInput {
+  freelancerId: Int!
+  niveau: String!
+  nom: String!
+}
+
+input CreateFreelancerInput {
+  email: String!
+  fullName: String!
+  phone: String
+}
+
+input CreateLinkInput {
+  freelancerId: Int!
+  titre: String!
+  url: String!
+}
+
+input CreateMissionInput {
+  description: String!
+  freelancerIds: [Int!]
+  titre: String!
+}
+
+type Freelancer {
+  competences: [Competence!]
+  email: String!
+  fullName: String!
+  id: Int!
+  liens: [LienProfessionnel!]
+  missions: [Mission!]
+  phone: String
+}
+
+type LienProfessionnel {
+  freelancer: Freelancer!
+  id: Int!
+  titre: String!
+  url: String!
+}
+
+type Mission {
+  description: String!
+  freelancers: [Freelancer!]!
+  id: Int!
+  statut: String!
+  titre: String!
+}
+
+type Mutation {
+  createCompetence(createCompetenceInput: CreateCompetenceInput!): Competence!
+  createFreelancer(createFreelancerInput: CreateFreelancerInput!): Freelancer!
+  createLien(createLinkInput: CreateLinkInput!): LienProfessionnel!
+  createMission(createMissionInput: CreateMissionInput!): Mission!
+  removeCompetence(id: Int!): Competence!
+  removeFreelancer(id: Int!): Freelancer!
+  removeLien(id: Int!): LienProfessionnel!
+  removeMission(id: Int!): Mission!
+  updateCompetence(updateCompetenceInput: UpdateCompetenceInput!): Competence!
+  updateFreelancer(updateFreelancerInput: UpdateFreelancerInput!): Freelancer!
+  updateLien(updateLinkInput: UpdateLinkInput!): LienProfessionnel!
+  updateMission(updateMissionInput: UpdateMissionInput!): Mission!
+}
+
+type Query {
+  competence(id: Int!): Competence
+  competences: [Competence!]!
+  freelancer(id: Int!): Freelancer
+  freelancers: [Freelancer!]!
+  lien(id: Int!): LienProfessionnel
+  liens: [LienProfessionnel!]!
+  mission(id: Int!): Mission
+  missions: [Mission!]!
+}
+
+input UpdateCompetenceInput {
+  freelancerId: Int!
+  id: Int!
+  niveau: String!
+  nom: String!
+}
+
+input UpdateFreelancerInput {
+  email: String!
+  fullName: String!
+  id: Int!
+  phone: String
+}
+
+input UpdateLinkInput {
+  freelancerId: Int!
+  id: Int!
+  titre: String!
+  url: String!
+}
+
+input UpdateMissionInput {
+  description: String!
+  freelancerIds: [Int!]
+  id: Int!
+  titre: String!
+}

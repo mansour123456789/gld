@@ -1,0 +1,315 @@
+# Opérations GraphQL pour Freelancer, Competence, LienProfessionnel et Mission
+
+## Freelancer
+
+### 1. Créer un Freelancer
+mutation {
+  createFreelancer(createFreelancerInput: {
+    fullName: "Ali Ben Youssef",
+    email: "ali@example.com",
+    phone: "+216 22 333 444"  # optionnel
+  }) {
+    id
+    fullName
+    email
+    phone
+  }
+}
+
+### 2. Lire tous les Freelancers
+query {
+  freelancers {
+    id
+    fullName
+    email
+    phone
+    competences {
+      id
+      nom
+      niveau
+    }
+    liens {
+      id
+      titre
+      url
+    }
+    missions {
+      id
+      titre
+      description
+    }
+  }
+}
+
+### 3. Lire un Freelancer spécifique
+query {
+  freelancer(id: 1) {
+    id
+    fullName
+    email
+    phone
+    competences {
+      id
+      nom
+      niveau
+    }
+    liens {
+      id
+      titre
+      url
+    }
+    missions {
+      id
+      titre
+      description
+    }
+  }
+}
+
+### 4. Mettre à jour un Freelancer
+mutation {
+  updateFreelancer(updateFreelancerInput: {
+    id: 1,
+    fullName: "Ali Ben Youssef Updated",
+    email: "ali.updated@example.com",
+    phone: "+216 55 666 777"  # optionnel
+  }) {
+    id
+    fullName
+    email
+    phone
+  }
+}
+
+### 5. Supprimer un Freelancer
+mutation {
+  removeFreelancer(id: 1) {
+    id
+    fullName
+  }
+}
+
+## Competence
+
+### 1. Créer une Compétence
+mutation {
+  createCompetence(createCompetenceInput: {
+    nom: "Développement Web",
+    niveau: "Expert",
+    freelancerId: 1
+  }) {
+    id
+    nom
+    niveau
+    freelancer {
+      id
+      fullName
+    }
+  }
+}
+
+### 2. Lire toutes les Compétences
+query {
+  competences {
+    id
+    nom
+    niveau
+    freelancer {
+      id
+      fullName
+    }
+  }
+}
+
+### 3. Lire une Compétence spécifique
+query {
+  competence(id: 1) {
+    id
+    nom
+    niveau
+    freelancer {
+      id
+      fullName
+    }
+  }
+}
+
+### 4. Mettre à jour une Compétence
+mutation {
+  updateCompetence(updateCompetenceInput: {
+    id: 1,
+    nom: "Développement Full Stack",
+    niveau: "Senior",
+    freelancerId: 1
+  }) {
+    id
+    nom
+    niveau
+    freelancer {
+      id
+      fullName
+    }
+  }
+}
+
+### 5. Supprimer une Compétence
+mutation {
+  removeCompetence(id: 1) {
+    id
+    nom
+  }
+}
+
+## LienProfessionnel
+
+### 1. Créer un Lien
+mutation {
+  createLien(createLinkInput: {
+    titre: "Portfolio GitHub",
+    url: "https://github.com/username",
+    freelancerId: 1
+  }) {
+    id
+    titre
+    url
+    freelancer {
+      id
+      fullName
+    }
+  }
+}
+
+### 2. Lire tous les Liens
+query {
+  liens {
+    id
+    titre
+    url
+    freelancer {
+      id
+      fullName
+    }
+  }
+}
+
+### 3. Lire un Lien spécifique
+query {
+  lien(id: 1) {
+    id
+    titre
+    url
+    freelancer {
+      id
+      fullName
+    }
+  }
+}
+
+### 4. Mettre à jour un Lien
+mutation {
+  updateLien(updateLinkInput: {
+    id: 1,
+    titre: "Portfolio LinkedIn",
+    url: "https://linkedin.com/in/username",
+    freelancerId: 1
+  }) {
+    id
+    titre
+    url
+    freelancer {
+      id
+      fullName
+    }
+  }
+}
+
+### 5. Supprimer un Lien
+mutation {
+  removeLien(id: 1) {
+    id
+    titre
+  }
+}
+
+## Mission
+
+### 1. Créer une Mission
+mutation {
+  createMission(createMissionInput: {
+    titre: "Développement Frontend",
+    description: "Création d'une interface utilisateur moderne",
+    freelancerIds: [1, 2]  # optionnel
+  }) {
+    id
+    titre
+    description
+    freelancers {
+      id
+      fullName
+    }
+  }
+}
+
+### 2. Lire toutes les Missions
+query {
+  missions {
+    id
+    titre
+    description
+    freelancers {
+      id
+      fullName
+    }
+  }
+}
+
+### 3. Lire une Mission spécifique
+query {
+  mission(id: 1) {
+    id
+    titre
+    description
+    freelancers {
+      id
+      fullName
+    }
+  }
+}
+
+### 4. Mettre à jour une Mission
+mutation {
+  updateMission(updateMissionInput: {
+    id: 1,
+    titre: "Développement Full Stack",
+    description: "Création d'une application web complète",
+    freelancerIds: [1, 2, 3]  # optionnel
+  }) {
+    id
+    titre
+    description
+    freelancers {
+      id
+      fullName
+    }
+  }
+}
+
+### 5. Supprimer une Mission
+mutation {
+  removeMission(id: 1) {
+    id
+    titre
+  }
+}
+
+## Notes
+- Tous les champs dans les réponses sont optionnels sauf id
+- Les relations sont chargées automatiquement
+- L'ID est généré automatiquement lors de la création
+- Les erreurs retourneront un message explicatif si l'opération échoue 
+
+
+
+
+
+pm run start:dev
